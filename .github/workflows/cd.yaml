@@ -1,0 +1,20 @@
+name: Continuous Deployment (CD)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy-to-swarm:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: SSH and Deploy to Docker Swarm
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.SWARM_MANAGER_IP }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+            docker pull ${{ secrets.DOCKER_USERNAME }}/mlops_assessment:latest
+            docker stack deploy -c /home/${{ secrets.SSH_USER }}/Mlops_Assesment_l00188628/stack.yaml mlops-app
