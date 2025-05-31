@@ -25,7 +25,7 @@ jobs:
       run: python train_model.py
 
     - name: Archive Trained Model
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v3.1.3
       with:
         name: salary-model
         path: model.pkl
