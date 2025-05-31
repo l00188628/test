@@ -1,4 +1,4 @@
-name: Retrain Model Pipeline
+name: CM - Retrain Model
 
 on:
   workflow_dispatch:
