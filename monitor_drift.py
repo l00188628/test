@@ -21,3 +21,12 @@ if abs(original_mean - new_mean) > threshold:
     print("⚠️  Drift detected: consider retraining.")
 else:
     print("✅ No significant drift detected.")
+
+
+# Add to end of monitor_drift.py
+if abs(original_mean - new_mean) > threshold:
+    print("⚠️  Drift detected: consider retraining.")
+    with open("drift_detected.txt", "w") as f:
+        f.write("true")
+else:
+    print("✅ No significant drift detected.")
