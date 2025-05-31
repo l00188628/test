@@ -1,9 +1,8 @@
 name: Continuous Integration (CI)
 
 on:
-  push:
-    branches: [main]
-
+  workflow_dispatch:
+  
 jobs:
   ci-build-test-push:
     runs-on: ubuntu-latest
