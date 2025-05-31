@@ -32,7 +32,7 @@ jobs:
         id: set-output
         run: |
           if [ -f drift_detected.txt ]; then
-            echo "drift=true" >> $GITHUB_OUTPUT
+            echo "Drift detected – consider retraining."
           else
-            echo "drift=false" >> $GITHUB_OUTPUT
+            echo "No significant drift detected."
           fi
