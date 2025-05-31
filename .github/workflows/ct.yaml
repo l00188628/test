@@ -6,22 +6,28 @@ on:
     - cron: '0 0 * * *'  # daily at midnight
 
 jobs:
-  monitor-drift:
-    runs-on: ubuntu-latest
+  check-drift:
+    runs-on: self-hosted
+    outputs:
+      drift: ${{ steps.set-output.outputs.drift }}
+
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.10'
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
 
-    - name: Install dependencies
-      run: |
-        pip install -r requirements.txt
-        pip install pandas numpy
+      - name: Run Drift Monitor
+        run: |
+          python monitor_drift.py
 
-    - name: Run Drift Check
-      run: |
-        python monitor_drift.py
+      - name: Check for Drift Trigger File
+        id: set-output
+        run: |
+          if [ -f drift_detected.txt ]; then
+            echo "drift=true" >> $GITHUB_OUTPUT
+          else
+            echo "drift=false" >> $GITHUB_OUTPUT
