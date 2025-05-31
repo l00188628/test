@@ -1,4 +1,4 @@
-name: Continuous Integration (CI)
+name: CI - Unit Tests and Model Training
 
 on:
   workflow_dispatch:
