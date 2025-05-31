@@ -35,3 +35,4 @@ jobs:
             echo "drift=true" >> $GITHUB_OUTPUT
           else
             echo "drift=false" >> $GITHUB_OUTPUT
+          fi
