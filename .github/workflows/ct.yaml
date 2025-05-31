@@ -1,4 +1,4 @@
-name: Continuous Testing - Drift Monitor
+name: CT- Drift Monitor
 
 on:
   workflow_dispatch:
