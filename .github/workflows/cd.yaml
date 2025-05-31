@@ -1,4 +1,4 @@
-name: Continuous Deployment to Docker Swarm
+name: CD - Docker Swarm
 
 on:
   workflow_dispatch:
