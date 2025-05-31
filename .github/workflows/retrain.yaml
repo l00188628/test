@@ -1,0 +1,31 @@
+name: Retrain Model Pipeline
+
+on:
+  workflow_dispatch:
+
+jobs:
+  retrain:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install Dependencies
+      run: |
+        pip install -r requirements.txt
+        pip install pandas scikit-learn joblib
+
+    - name: Retrain Model
+      run: python train_model.py
+
+    - name: Archive Trained Model
+      uses: actions/upload-artifact@v3
+      with:
+        name: salary-model
+        path: model.pkl

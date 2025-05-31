@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+  flask-api:
+    image: l00188628/mlops_assessment:latest
+    ports:
+      - "80:5000"
+    deploy:
+      replicas: 3
+      restart_policy:
+        condition: on-failure
