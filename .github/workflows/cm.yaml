@@ -1,4 +1,4 @@
-name: CT- Drift Monitor
+name: CM- Data Drift Monitor
 
 on:
   workflow_dispatch:
