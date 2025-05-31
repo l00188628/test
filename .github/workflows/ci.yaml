@@ -23,6 +23,9 @@ jobs:
           pip install -r requirements.txt
           pip install pytest
 
+      - name: Train model
+        run: python train_model.py
+
       - name: Run unit tests
         run: |
           export PYTHONPATH=.
